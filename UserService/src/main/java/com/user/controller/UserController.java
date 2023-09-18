@@ -26,7 +26,6 @@ public class UserController {
 	@GetMapping("/{userId}")
 	public User getUser(@PathVariable("userId") Long userId) {
 		User user = userService.getUser(userId);
-//		http://localhost:9002/contact/user/1521
 		List<Contact> contacts = restTemplate.getForObject("http://contact-service/contact/user/"+user.getId(), List.class);
 		user.setContacts(contacts);
 		return user;
